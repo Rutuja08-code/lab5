@@ -1,0 +1,139 @@
+Steps to run: 
+              Create Folder-assignment
+              inside that folder:create 4 files
+                        Server.java
+                        ServerImpl.java
+                        ServerIntf.java
+                        Client.java
+
+
+first terminal: go to that folder location and open terminal
+   javac *.java
+
+then write 
+   rmiregistry
+
+second terminal: 
+     java Server
+
+third terminal:
+     java Client
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. ServerIntf.java:
+
+import java.rmi.*;
+
+public interface ServerIntf extends Remote {
+
+    public String query(String search) throws RemoteException;
+
+}
+
+
+2. ServerImpl.java:
+
+import java.rmi.*;
+import java.rmi.server.*;
+
+public class ServerImpl extends UnicastRemoteObject implements ServerIntf {
+
+    public ServerImpl() throws RemoteException {
+        super();
+    }
+
+    public String query(String search) throws RemoteException {
+
+        String result;
+
+        if(search.equalsIgnoreCase("RMI in Java")) {
+            result = "Found";
+        }
+        else {
+            result = "Not Found";
+        }
+
+        return result;
+    }
+}
+
+
+3. Server.java
+
+import java.rmi.*;
+
+public class Server {
+
+    public static void main(String args[]) {
+
+        try {
+
+            ServerImpl serverImpl = new ServerImpl();
+
+            Naming.rebind("Server", serverImpl);
+
+            System.out.println("Server Started...");
+
+        }
+        catch(Exception e) {
+
+            System.out.println("Exception Occurred At Server : " + e.getMessage());
+
+        }
+    }
+}
+
+4. Client.java
+
+import java.rmi.*;
+import java.util.Scanner;
+
+public class Client {
+
+    public static void main(String args[]) {
+
+        Scanner sc = new Scanner(System.in);
+
+        try {
+
+            String serverURL = "rmi://localhost/Server";
+
+            ServerIntf serverIntf = (ServerIntf) Naming.lookup(serverURL);
+
+            System.out.println("Enter Search String : ");
+            String value = sc.nextLine();
+
+            String answer = serverIntf.query(value);
+
+            System.out.println("----------------------------");
+            System.out.println("Search Result : " + answer);
+            System.out.println("----------------------------");
+
+        }
+        catch(Exception e) {
+
+            System.out.println("Exception Occurred At Client : " + e.getMessage());
+
+        }
+    }
+}
+
+
