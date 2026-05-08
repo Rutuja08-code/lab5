@@ -107,35 +107,41 @@ class BullyAlgoExample {
 
 
 
+Simple input:
 
-Sample Input
 Enter total number of processes:
 5
 
 Status for process 1:
 1
 Priority of process 1:
-1
+10
 
 Status for process 2:
 1
 Priority of process 2:
-2
+20
 
 Status for process 3:
-1
+0
 Priority of process 3:
-3
+30
 
 Status for process 4:
 1
 Priority of process 4:
-4
+40
 
 Status for process 5:
 1
 Priority of process 5:
-5
+50
 
 Enter process which will initiate election
 2
+
+Election message is sent from 2 to 3
+Election message is sent from 2 to 4
+Election message is sent from 4 to 5
+Election message is sent from 2 to 5
+After electing process the final coordinator is 5
