@@ -73,7 +73,21 @@ public class TokenRing {
 
 Enter Input
 
-Enter Number Of Nodes You Want In The Ring : 10
-Enter Sender : 4
-Enter Receiver : 8
-Enter Data To Send : 70
+Enter Number Of Nodes You Want In The Ring : 5
+Ring Formed Is As Below :
+0 1 2 3 4 0
+
+Enter Sender : 2
+Enter Receiver : 4
+Enter Data To Send : 100
+
+Token Passing : 0 -> 1 -> 2
+
+Sender : 2 Sending Data : 100
+
+Data : 100 Forwarded By : 2
+Data : 100 Forwarded By : 3
+
+Receiver : 4 Received The Data : 100
+
+Do You Want To Send Data Again? If YES Enter 1, If NO Enter 0 : 0
